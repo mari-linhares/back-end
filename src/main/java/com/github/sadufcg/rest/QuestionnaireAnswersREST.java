@@ -55,4 +55,18 @@ public class QuestionnaireAnswersREST {
 		return new ResponseEntity<>("Resposta registrada, obrigado!", HttpStatus.CREATED);    			
     }
 
+    @CrossOrigin
+	@RequestMapping(value = "/check_token", method = RequestMethod.POST, produces = "text/plain; charset=utf-8")
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<String> checkIfTokenExists (@RequestBody Token token){
+    	Token tokenFounded = tokenRepository.findOne(token.getId());
+
+    	if(tokenFounded == null){
+    		return new ResponseEntity<String>("Token inválido.", HttpStatus.BAD_REQUEST);
+		} else {
+    		return new ResponseEntity<String>("Token válido.", HttpStatus.OK);
+		}
+
+	}
+
 }

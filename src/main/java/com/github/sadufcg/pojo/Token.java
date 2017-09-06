@@ -19,6 +19,11 @@ public class Token {
     @OneToOne
     private Course course;
 
+
+    public Token(String id){
+        this.id = id;
+    }
+
     public Token() {
     	this.id = UUID.randomUUID().toString();
     }
